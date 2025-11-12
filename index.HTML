@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café García - Experiencia Premium en Café y Accesorios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        header {
+            background-color: #4a2c12;
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #5d3a1a;
+            padding: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            margin: 0.3rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        nav a:hover {
+            background-color: #7a4b20;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            background-color: #e8b959;
+            color: #4a2c12;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #f5d17e;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+            font-size: 2rem;
+            color: #4a2c12;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #e8b959;
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .category-tab {
+            padding: 0.7rem 1.5rem;
+            margin: 0.5rem;
+            background-color: #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        
+        .category-tab.active, .category-tab:hover {
+            background-color: #4a2c12;
+            color: white;
+        }
+        
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e8b959;
+            color: #4a2c12;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .vip-badge {
+            background-color: #d4af37;
+            color: #000;
+        }
+        
+        .new-badge {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .sale-badge {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+            color: #333;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .current-price {
+            font-weight: bold;
+            color: #4a2c12;
+            font-size: 1.3rem;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.7rem;
+            font-size: 0.9rem;
+        }
+        
+        .add-to-cart {
+            background-color: #4a2c12;
+            color: white;
+            border: none;
+            padding: 0.7rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .add-to-cart i {
+            margin-right: 0.5rem;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #7a4b20;
+            transform: translateY(-2px);
+        }
+        
+        .cart-container {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            height: 100%;
+            background-color: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.4s;
+            z-index: 1000;
+            padding: 1.5rem;
+            overflow-y: auto;
+        }
+        
+        .cart-container.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s;
+        }
+        
+        .close-cart:hover {
+            color: #333;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 1rem;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .cart-item-price {
+            color: #4a2c12;
+            font-weight: 500;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        
+        .quantity-btn {
+            background-color: #eee;
+            border: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: #ddd;
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: #ff0000;
+            cursor: pointer;
+            margin-left: 1rem;
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+        
+        .remove-item:hover {
+            transform: scale(1.2);
+        }
+        
+        .cart-summary {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.4rem;
+            margin: 1.5rem 0;
+        }
+        
+        .checkout-btn {
+            background-color: #4a2c12;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #7a4b20;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .cart-icon {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background-color: #4a2c12;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #e8b959;
+            color: #4a2c12;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .about-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 3rem 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 2rem;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-content h2 {
+            color: #4a2c12;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .about-content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .testimonials {
+            margin: 4rem 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 1rem;
+        }
+        
+        .author-info h4 {
+            color: #4a2c12;
+            margin-bottom: 0.3rem;
+        }
+        
+        .author-info p {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        .contact-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 3rem 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info h3 {
+            color: #4a2c12;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-detail i {
+            font-size: 1.2rem;
+            color: #e8b959;
+            margin-right: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #f5f5f5;
+            border-radius: 50%;
+            margin-right: 1rem;
+            color: #4a2c12;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: #e8b959;
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 0.7rem;
+        }
+        
+        .form-group label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #e8b959;
+            outline: none;
+        }
+        
+        .submit-btn {
+            background-color: #4a2c12;
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .submit-btn:hover {
+            background-color: #7a4b20;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .newsletter {
+            background-color: #4a2c12;
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-btn {
+            background-color: #e8b959;
+            color: #4a2c12;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #f5d17e;
+        }
+        
+        footer {
+            background-color: #2c1a0a;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: #e8b959;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #e8b959;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .about-image, .about-content {
+                min-width: 100%;
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-input {
+                border-radius: 30px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-btn {
+                border-radius: 30px;
+                padding: 0.8rem;
+            }
+        }
+        
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        /* Iconos de Font Awesome */
+        .fas {
+            font-family: 'Font Awesome';
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Café García</h1>
+        <p>Experiencia Premium en Café y Accesorios</p>
+    </header>
+    
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#cafes">Cafés</a>
+        <a href="#accesorios">Accesorios</a>
+        <a href="#vasos">Vasos</a>
+        <a href="#vip">VIP</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+    
+    <div class="container">
+        <section class="hero" id="inicio">
+            <h2>Descubre el Auténtico Sabor del Café</h2>
+            <p>Selección premium de granos de café y accesorios de alta calidad para los verdaderos amantes del café.</p>
+            <a href="#cafes" class="btn">Explorar Productos</a>
+        </section>
+        
+        <section id="cafes">
+            <h2 class="section-title">Nuestros Cafés Premium</h2>
+            
+            <div class="category-tabs">
+                <div class="category-tab active" data-category="all">Todos</div>
+                <div class="category-tab" data-category="arabica">Arábica</div>
+                <div class="category-tab" data-category="robusta">Robusta</div>
+                <div class="category-tab" data-category="especiales">Especiales</div>
+                <div class="category-tab" data-category="descafeinado">Descafeinado</div>
+            </div>
+            
+            <div class="products">
+                <div class="product-card" data-category="arabica">
+                    <div class="product-badge new-badge">Nuevo</div>
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Arábica Colombia" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Arábica Colombia</h3>
+                        <p class="product-description">Granos 100% arábica de Colombia, con notas frutales y acidez balanceada. Cultivado a altitud.</p>
+                        <div class="product-price">
+                            <span class="current-price">$14.99</span>
+                            <span class="original-price">$16.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="1" data-name="Arábica Colombia" data-price="14.99" data-image="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="arabica">
+                    <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Arábica Etiopía" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Arábica Etiopía</h3>
+                        <p class="product-description">Café de origen único con notas florales y cítricas. Proceso natural de secado.</p>
+                        <div class="product-price">
+                            <span class="current-price">$16.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="2" data-name="Arábica Etiopía" data-price="16.99" data-image="https://images.unsplash.com/photo-1534778101976-62847782c213?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="robusta">
+                    <div class="product-badge sale-badge">20% OFF</div>
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Robusta Vietnam" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Robusta Vietnam</h3>
+                        <p class="product-description">Granos robusta premium de Vietnam, cuerpo intenso y alto contenido de cafeína.</p>
+                        <div class="product-price">
+                            <span class="current-price">$11.99</span>
+                            <span class="original-price">$14.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="3" data-name="Robusta Vietnam" data-price="11.99" data-image="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="especiales">
+                    <img src="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Mezcla Especial" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Mezcla Especial García</h3>
+                        <p class="product-description">Nuestra mezcla exclusiva 80% arábica, 20% robusta para un sabor equilibrado y complejo.</p>
+                        <div class="product-price">
+                            <span class="current-price">$18.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="4" data-name="Mezcla Especial García" data-price="18.99" data-image="https://images.unsplash.com/photo-1515442261605-65987783cb6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="descafeinado">
+                    <img src="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Orgánico Descafeinado" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Orgánico Descafeinado</h3>
+                        <p class="product-description">Certificado orgánico, cultivado sin pesticidas y descafeinado mediante proceso natural con agua.</p>
+                        <div class="product-price">
+                            <span class="current-price">$19.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="5" data-name="Orgánico Descafeinado" data-price="19.99" data-image="https://images.unsplash.com/photo-1459755486867-b55449bb39ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card" data-category="especiales">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Blue Mountain" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Blue Mountain Jamaica</h3>
+                        <p class="product-description">Uno de los cafés más exclusivos del mundo, con un perfil de sabor suave y aroma exquisito.</p>
+                        <div class="product-price">
+                            <span class="current-price">$49.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="6" data-name="Blue Mountain Jamaica" data-price="49.99" data-image="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="accesorios">
+            <h2 class="section-title">Accesorios para Café</h2>
+            
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Prensa Francesa" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Prensa Francesa</h3>
+                        <p class="product-description">Prensa francesa de acero inoxidable de 1 litro, ideal para preparar café con cuerpo completo.</p>
+                        <div class="product-price">
+                            <span class="current-price">$29.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="7" data-name="Prensa Francesa" data-price="29.99" data-image="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge new-badge">Nuevo</div>
+                    <img src="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Molino de Café" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Molino de Café Manual</h3>
+                        <p class="product-description">Molino manual con muelas de cerámica ajustables para moler café justo antes de prepararlo.</p>
+                        <div class="product-price">
+                            <span class="current-price">$34.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="8" data-name="Molino de Café Manual" data-price="34.99" data-image="https://images.unsplash.com/photo-1550583724-b2692b85b150?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608355024220-e5f3f8b3a9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Filtros de Café" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Filtros de Papel #4</h3>
+                        <p class="product-description">Paquete de 100 filtros de papel naturales sin blanquear para cafeteras de goteo.</p>
+                        <div class="product-price">
+                            <span class="current-price">$5.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="9" data-name="Filtros de Papel #4" data-price="5.99" data-image="https://images.unsplash.com/photo-1608355024220-e5f3f8b3a9f2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Báscula para Café" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Báscula Digital Premium</h3>
+                        <p class="product-description">Báscula de precisión para café con temporizador integrado, resolución de 0.1 gramos.</p>
+                        <div class="product-price">
+                            <span class="current-price">$45.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="10" data-name="Báscula Digital Premium" data-price="45.99" data-image="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="vasos">
+            <h2 class="section-title">Vasos y Tazas</h2>
+            
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Taza de Cerámica" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Taza de Cerámica Artesanal</h3>
+                        <p class="product-description">Taza de cerámica hecha a mano, capacidad 350ml, diseño exclusivo Café García.</p>
+                        <div class="product-price">
+                            <span class="current-price">$19.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="11" data-name="Taza de Cerámica Artesanal" data-price="19.99" data-image="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge sale-badge">15% OFF</div>
+                    <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Juego de Tazas" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Juego de 4 Tazas</h3>
+                        <p class="product-description">Set de 4 tazas de porcelana con platillos, diseño elegante y moderno.</p>
+                        <div class="product-price">
+                            <span class="current-price">$33.99</span>
+                            <span class="original-price">$39.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="12" data-name="Juego de 4 Tazas" data-price="33.99" data-image="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Termo de Acero" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Termo de Acero Inoxidable</h3>
+                        <p class="product-description">Termo de 500ml que mantiene la temperatura por 12 horas, ideal para viajes.</p>
+                        <div class="product-price">
+                            <span class="current-price">$27.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="13" data-name="Termo de Acero Inoxidable" data-price="27.99" data-image="https://images.unsplash.com/photo-1517705008128-361805f42e86?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Taza de Viaje" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Taza de Viaje Premium</h3>
+                        <p class="product-description">Taza térmica de doble pared con tapa hermética, mantiene la temperatura por horas.</p>
+                        <div class="product-price">
+                            <span class="current-price">$39.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="14" data-name="Taza de Viaje Premium" data-price="39.99" data-image="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="vip">
+            <h2 class="section-title">Productos VIP</h2>
+            
+            <div class="products">
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Café Blue Mountain" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Blue Mountain Jamaica</h3>
+                        <p class="product-description">Uno de los cafés más exclusivos del mundo, con un perfil de sabor suave y aroma exquisito.</p>
+                        <div class="product-price">
+                            <span class="current-price">$49.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="6" data-name="Blue Mountain Jamaica" data-price="49.99" data-image="https://images.unsplash.com/photo-1515694346937-94d85e41e6f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Báscula para Café" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Báscula Digital Premium</h3>
+                        <p class="product-description">Báscula de precisión para café con temporizador integrado, resolución de 0.1 gramos.</p>
+                        <div class="product-price">
+                            <span class="current-price">$45.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="10" data-name="Báscula Digital Premium" data-price="45.99" data-image="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Taza de Viaje" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Taza de Viaje Premium</h3>
+                        <p class="product-description">Taza térmica de doble pared con tapa hermética, mantiene la temperatura por horas.</p>
+                        <div class="product-price">
+                            <span class="current-price">$39.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="14" data-name="Taza de Viaje Premium" data-price="39.99" data-image="https://images.unsplash.com/photo-1607083206869-4c7672e72a8a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-badge vip-badge">VIP</div>
+                    <img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Cafetera Espresso" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Cafetera Espresso Profesional</h3>
+                        <p class="product-description">Máquina espresso semiautomática con bomba de 15 bares, vaporizador profesional.</p>
+                        <div class="product-price">
+                            <span class="current-price">$599.99</span>
+                        </div>
+                        <button class="add-to-cart" data-id="15" data-name="Cafetera Espresso Profesional" data-price="599.99" data-image="https://images.unsplash.com/photo-1594035910387-fea47794261f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60">
+                            <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="about-section" id="nosotros">
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1463797221720-6b07e6426c24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Sobre Café García">
+            </div>
+            <div class="about-content">
+                <h2>Nuestra Historia</h2>
+                <p>Café García nació en 2010 con la pasión por ofrecer los mejores granos de café de las regiones más exclusivas del mundo. Lo que comenzó como un pequeño tostador artesanal se ha convertido en una referencia de calidad para los amantes del café.</p>
+                <p>Seleccionamos personalmente cada lote de granos, trabajando directamente con pequeños productores que comparten nuestro compromiso con la sostenibilidad y la excelencia.</p>
+                <p>Hoy, además de nuestros premiados cafés, ofrecemos una cuidadosa selección de accesorios y equipos para que disfrutes la mejor experiencia de café en casa.</p>
+                <a href="#contacto" class="btn">Contáctanos</a>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"El Café Arábica Colombia es simplemente excepcional. Las notas frutales y el equilibrio perfecto entre acidez y cuerpo lo convierten en mi café de desayuno favorito."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="María González" class="author-image">
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <p>Cliente desde 2015</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La Prensa Francesa que compré superó todas mis expectativas. Fácil de usar y el café queda con un cuerpo y sabor increíbles. ¡Recomendado 100%!"</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendoza" class="author-image">
+                        <div class="author-info">
+                            <h4>Carlos Mendoza</h4>
+                            <p>Cliente desde 2018</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Como barista profesional, solo confío en Café García para mis granos premium. Su Blue Mountain Jamaica es simplemente el mejor café que he probado."</p>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Ana Torres" class="author-image">
+                        <div class="author-info">
+                            <h4>Ana Torres</h4>
+                            <p>Barista profesional</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="newsletter">
+            <h2>Únete a nuestro Club de Café</h2>
+            <p>Suscríbete a nuestro newsletter y recibe descuentos exclusivos, consejos para preparar café y las últimas novedades directamente en tu correo.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Tu correo electrónico" class="newsletter-input" required>
+                <button type="submit" class="newsletter-btn">Suscribirse</button>
+            </form>
+        </section>
+        
+        <section class="contact-section" id="contacto">
+            <h2 class="section-title">Contacto</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Calle del Café 123, Ciudad Café, CP 12345</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (555) 123-4567</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@cafegarcia.com</span>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-clock"></i>
+                            <span>Lunes a Viernes: 9:00 - 18:00</span>
+                        </div>
+                    </div>
+                    
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre completo</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <select id="subject" name="subject">
+                            <option value="consulta">Consulta general</option>
+                            <option value="pedido">Información sobre pedido</option>
+                            <option value="producto">Información sobre producto</option>
+                            <option value="sugerencia">Sugerencia</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+    
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-header">
+            <h2>Tu Carrito</h2>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Los items del carrito se agregarán aquí dinámicamente -->
+        </div>
+        
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span>$<span id="cartSubtotal">0.00</span></span>
+            </div>
+            <div class="summary-row">
+                <span>Envío:</span>
+                <span>$<span id="shippingCost">5.99</span></span>
+            </div>
+            <div class="summary-row">
+                <span>Descuento:</span>
+                <span>-$<span id="discountAmount">0.00</span></span>
+            </div>
+        </div>
+        
+        <div class="cart-total">
+            <span>Total:</span>
+            <span>$<span id="cartTotal">0.00</span></span>
+        </div>
+        
+        <button class="checkout-btn" id="checkoutBtn">Proceder al Pago</button>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Café García</h3>
+                <p>Los mejores granos de café y accesorios para los verdaderos amantes del café desde 2010.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Productos</h3>
+                <ul class="footer-links">
+                    <li><a href="#cafes">Cafés Premium</a></li>
+                    <li><a href="#accesorios">Accesorios</a></li>
+                    <li><a href="#vasos">Vasos y Tazas</a></li>
+                    <li><a href="#vip">Productos VIP</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Información</h3>
+                <ul class="footer-links">
+                    <li><a href="#nosotros">Sobre Nosotros</a></li>
+                    <li><a href="#">Blog del Café</a></li>
+                    <li><a href="#">Métodos de Pago</a></li>
+                    <li><a href="#">Envíos y Devoluciones</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul class="footer-links">
+                    <li><a href="#contacto">Contáctanos</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Café García. Todos los derechos reservados.</p>
+            <p>Propiedad de Luis Angel García</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Carrito de compras
+        let cart = [];
+        
+        // Elementos del DOM
+        const cartIcon = document.getElementById('cartIcon');
+        const cartContainer = document.getElementById('cartContainer');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartCount = document.getElementById('cartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+        const shippingCost = document.getElementById('shippingCost');
+        const discountAmount = document.getElementById('discountAmount');
+        const cartTotal = document.getElementById('cartTotal');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const contactForm = document.getElementById('contactForm');
+        const categoryTabs = document.querySelectorAll('.category-tab');
+        
+        // Event Listeners
+        cartIcon.addEventListener('click', toggleCart);
+        closeCart.addEventListener('click', toggleCart);
+        checkoutBtn.addEventListener('click', checkout);
+        
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', handleContactForm);
+        }
+        
+        categoryTabs.forEach(tab => {
+            tab.addEventListener('click', filterProducts);
+        });
+        
+        // Funciones
+        function toggleCart() {
+            cartContainer.classList.toggle('open');
+        }
+        
+        function addToCart(e) {
+            const button = e.target.closest('.add-to-cart');
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+            const image = button.getAttribute('data-image');
+            
+            // Verificar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1, image });
+            }
+            
+            updateCart();
+            showCartNotification(name);
+        }
+        
+        function updateCart() {
+            // Actualizar items del carrito
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center;">Tu carrito está vacío</p>';
+                document.getElementById('shippingCost').textContent = '0.00';
+                document.getElementById('discountAmount').textContent = '0.00';
+            } else {
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item';
+                    cartItemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${item.name}</div>
+                            <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                                <span>${item.quantity}</span>
+                                <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                                <button class="remove-item" data-id="${item.id}"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    cartItems.appendChild(cartItemElement);
+                });
+            }
+            
+            // Actualizar contador y totales
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = cart.length > 0 ? 5.99 : 0;
+            const discount = subtotal > 100 ? subtotal * 0.1 : 0; // 10% de descuento para compras mayores a $100
+            
+            const total = subtotal + shipping - discount;
+            
+            cartCount.textContent = totalCount;
+            cartSubtotal.textContent = subtotal.toFixed(2);
+            shippingCost.textContent = shipping.toFixed(2);
+            discountAmount.textContent = discount.toFixed(2);
+            cartTotal.textContent = total.toFixed(2);
+            
+            // Agregar event listeners a los nuevos botones
+            document.querySelectorAll('.quantity-btn.minus').forEach(button => {
+                button.addEventListener('click', decreaseQuantity);
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(button => {
+                button.addEventListener('click', increaseQuantity);
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', removeItem);
+            });
+        }
+        
+        function decreaseQuantity(e) {
+            const id = e.target.getAttribute('data-id');
+            const item = cart.find(item => item.id === id);
+            
+            if (item.quantity > 1) {
+                item.quantity -= 1;
+            } else {
+                cart = cart.filter(item => item.id !== id);
+            }
+            
+            updateCart();
+        }
+        
+        function increaseQuantity(e) {
+            const id = e.target.getAttribute('data-id');
+            const item = cart.find(item => item.id === id);
+            item.quantity += 1;
+            updateCart();
+        }
+        
+        function removeItem(e) {
+            const id = e.target.closest('.remove-item').getAttribute('data-id');
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+        
+        function showCartNotification(productName) {
+            const notification = document.createElement('div');
+            notification.style.position = 'fixed';
+            notification.style.bottom = '20px';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = '#4a2c12';
+            notification.style.color = 'white';
+            notification.style.padding = '15px 25px';
+            notification.style.borderRadius = '30px';
+            notification.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            notification.style.zIndex = '1000';
+            notification.style.animation = 'fadeInOut 3s forwards';
+            notification.style.display = 'flex';
+            notification.style.alignItems = 'center';
+            notification.innerHTML = `
+                <i class="fas fa-check-circle" style="margin-right: 10px;"></i>
+                ¡${productName} añadido al carrito!
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+        
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío. Agrega algunos productos antes de proceder al pago.');
+                return;
+            }
+            
+            // Aquí normalmente se integraría con un sistema de pago
+            alert(`Pedido realizado con éxito!\nTotal: $${cartTotal.textContent}\nGracias por tu compra.`);
+            cart = [];
+            updateCart();
+            toggleCart();
+        }
+        
+        function handleContactForm(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Aquí normalmente se enviaría el formulario a un servidor
+            alert(`Gracias por tu mensaje, ${name}!\nAsunto: ${subject}\nNos pondremos en contacto contigo pronto en ${email}.`);
+            contactForm.reset();
+        }
+        
+        function filterProducts(e) {
+            const category = e.target.getAttribute('data-category');
+            
+            // Actualizar pestañas activas
+            categoryTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            e.target.classList.add('active');
+            
+            // Filtrar productos
+            const productCards = document.querySelectorAll('.product-card');
+            
+            productCards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Inicializar carrito
+        updateCart();
+    </script>
+</body>
+</html>
